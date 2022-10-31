@@ -1,11 +1,15 @@
 package types
 
+import "time"
+
 type Post struct {
 	ImgHref  string
 	Likes    int
 	Views    int
 	Tags     []string
 	Location string
+	Comments []string
+	Time     time.Time
 }
 
 type Story struct {
