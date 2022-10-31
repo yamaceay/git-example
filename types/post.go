@@ -1,6 +1,10 @@
 package types
 
-import "time"
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+)
 
 type Post struct {
 	ImgHref  string
@@ -29,4 +33,35 @@ type User struct {
 	Posts     []Post
 	Followers []string
 	Stories   []Story
+}
+
+func (p Post) String() string {
+	var bio string
+	if len(p.ImgHref) == 0 {
+		return bio
+	}
+	pBytes, _ := json.MarshalIndent(p, "", "  ")
+	return string(pBytes)
+}
+
+func (s Story) String() string {
+	sBytes, _ := json.MarshalIndent(s, "", "  ")
+	return string(sBytes)
+}
+
+func (u User) String() string {
+	var bio string
+	if len(u.Posts) > 0 {
+		bio += fmt.Sprintf("Posts: %s\n", u.Posts)
+	}
+	if len(u.Stories) > 0 {
+		bio += fmt.Sprintf("Stories: %s\n", u.Stories)
+	}
+	if nfollowers := len(u.Followers); nfollowers == 0 {
+		bio += fmt.Sprintf("User has %d followers!\n", nfollowers)
+	} else {
+		bio += fmt.Sprintf("User has no followers!\n")
+	}
+	bio += fmt.Sprintf("Name: %s\n", u.Username)
+	return bio
 }

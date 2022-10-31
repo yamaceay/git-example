@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 
 	"github.com/git-example/types"
@@ -20,11 +19,10 @@ func main() {
 		{Likes: 200, Views: 300},
 	}
 	user := types.User{
-		Followers: []string{"Adrian"},
+		Username:  "Adrian",
+		Followers: []string{"Betty"},
 		Posts:     posts,
 		Stories:   stories,
 	}
-
-	userBytes, _ := json.MarshalIndent(user, "", "  ")
-	fmt.Printf("%s\n", string(userBytes))
+	fmt.Printf("%s\n", user)
 }
