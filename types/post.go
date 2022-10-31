@@ -40,17 +40,15 @@ func (p Post) String() string {
 	if len(p.ImgHref) == 0 {
 		return bio
 	}
-	pBytes, _ := json.MarshalIndent(p, "", "  ")
-	return string(pBytes)
+	return jsonify(p)
 }
 
 func (s Story) String() string {
-	sBytes, _ := json.MarshalIndent(s, "", "  ")
-	return string(sBytes)
+	return jsonify(s)
 }
 
 func (u User) String() string {
-	var bio string
+	bio := fmt.Sprintf("Name: %s\n", u.Username)
 	if len(u.Posts) > 0 {
 		bio += fmt.Sprintf("Posts: %s\n", u.Posts)
 	}
@@ -62,6 +60,10 @@ func (u User) String() string {
 	} else {
 		bio += fmt.Sprintf("User has no followers!\n")
 	}
-	bio += fmt.Sprintf("Name: %s\n", u.Username)
 	return bio
+}
+
+func jsonify(v interface{}) string {
+	vBytes, _ := json.MarshalIndent(v, "", "  ")
+	return string(vBytes)
 }
