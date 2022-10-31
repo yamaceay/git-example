@@ -8,8 +8,15 @@ type Post struct {
 	Views    int
 	Tags     []string
 	Location string
-	Comments []string
 	Time     time.Time
+	Comments []Comment
+}
+
+type Comment struct {
+	Content   string
+	Username  string
+	CreatedAt time.Time
+	Likes     int
 }
 
 type Story struct {
