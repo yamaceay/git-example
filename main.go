@@ -8,15 +8,15 @@ import (
 
 func main() {
 	comments := []types.Comment{
-		{Likes: 10, Username: "Betty", Content: "nice photo!"},
+		{Liked: []string{"Adrian"}, Username: "Betty", Content: "nice photo!"},
 	}
 	posts := []types.Post{
-		{Likes: 300, Views: 500, Tags: []string{"sunset", "beach"}},
-		{Likes: 500, Views: 1000, Location: "istanbul", Comments: comments},
+		{Liked: []string{}, Viewed: []string{}, Tags: []string{"sunset", "beach"}},
+		{Liked: []string{}, Viewed: []string{}, Location: "istanbul", Comments: comments},
 	}
 	stories := []types.Story{
-		{Likes: 100, Views: 1000},
-		{Likes: 200, Views: 300},
+		{Liked: []string{}, Viewed: []string{}},
+		{Liked: []string{}, Viewed: []string{}},
 	}
 	user := types.User{
 		Username:  "Adrian",
