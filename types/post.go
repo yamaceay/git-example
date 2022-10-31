@@ -60,22 +60,7 @@ func (p Post) String() string {
 	if len(p.ImgHref) == 0 {
 		return bio
 	}
-	return jsonify(
-		struct {
-			ImgHref  string
-			Likes    int
-			Views    int
-			Tags     []string
-			Location string
-			Comments int
-		}{
-			ImgHref:  p.ImgHref,
-			Likes:    len(p.Liked),
-			Views:    len(p.Viewed),
-			Tags:     p.Tags,
-			Location: p.Location,
-			Comments: len(p.Comments),
-		})
+	return jsonify(p)
 }
 
 func (s Story) String() string {
